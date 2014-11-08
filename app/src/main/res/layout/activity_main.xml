@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+    <RelativeLayout android:id="@+id/layout" android:background="#c0000000" tools:context=".MainActivity" android:paddingBottom="@dimen/activity_vertical_margin" android:paddingTop="@dimen/activity_vertical_margin" android:paddingRight="@dimen/activity_horizontal_margin" android:paddingLeft="@dimen/activity_horizontal_margin" android:layout_height="match_parent" android:layout_width="match_parent" xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView android:id="@+id/titleLabel" android:layout_height="wrap_content" android:layout_width="wrap_content" android:gravity="center_horizontal" android:singleLine="false" android:textSize="@dimen/welcome_text_size" android:layout_marginTop="60dp" android:layout_alignParentTop="true" android:textColor="#ffffffff" android:text="@string/welcome_text"/>
+
+    <TextView android:id="@+id/pleaseLoginLabel" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_marginTop="52dp" android:textColor="#ffffffff" android:text="@string/please_login_text" android:layout_centerHorizontal="true" android:layout_below="@+id/titleLabel"/>
+
+    <EditText android:id="@+id/usernameTextField" android:background="#ffffffff" android:layout_height="wrap_content" android:layout_width="wrap_content" android:textColor="#ff000000" android:maxLength="50" android:layout_alignEnd="@+id/titleLabel" android:layout_alignRight="@+id/titleLabel" android:layout_centerVertical="true" android:ems="10" android:inputType="textPersonName"/>
+
+    <TextView android:id="@+id/usernameLabel" android:layout_height="wrap_content" android:layout_width="wrap_content" android:textColor="#ffffffff" android:text="@string/username_text" android:layout_alignStart="@+id/pleaseLoginLabel" android:layout_alignLeft="@+id/pleaseLoginLabel" android:layout_alignBottom="@+id/usernameTextField" android:layout_toLeftOf="@+id/usernameTextField"/>
+
+    <TextView android:id="@+id/passwordLabel" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_marginTop="50dp" android:textColor="#ffffffff" android:text="@string/password_text" android:layout_below="@+id/usernameLabel" android:layout_alignStart="@+id/usernameLabel" android:layout_alignLeft="@+id/usernameLabel"/>
+
+    <EditText android:id="@+id/passwordTextField" android:background="#ffffffff" android:layout_height="wrap_content" android:layout_width="wrap_content" android:textColor="#ff000000" android:ems="10" android:inputType="textPassword" android:layout_toEndOf="@+id/usernameLabel" android:layout_toRightOf="@+id/usernameLabel" android:layout_alignTop="@+id/passwordLabel"/>
+
+    <Button android:id="@+id/loginButton" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_marginTop="56dp" android:textColor="#ff2cff3e" android:text="@string/login_text" android:layout_centerHorizontal="true" android:layout_below="@+id/passwordTextField"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/login_error_text"
+        android:id="@+id/loginErrorLabel"
+        android:layout_toEndOf="@+id/passwordLabel"
+        android:visibility="visible"
+        android:layout_below="@+id/passwordTextField"
+        android:layout_toRightOf="@+id/passwordLabel"
+        android:textColor="#ffff0011"
+        android:paddingTop="20dp" />
+
+</RelativeLayout>
