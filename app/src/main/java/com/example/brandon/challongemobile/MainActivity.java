@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.CheckBox;
 
 import java.net.Authenticator;
 import javax.net.ssl.HttpsURLConnection;
@@ -17,31 +19,55 @@ import java.net.PasswordAuthentication;
 import java.net.URL;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity
+{
+    Button loginButton;
+    EditText usernameView;
+    EditText passwordView;
+    CheckBox checkB;
+
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
-
-        final Button loginButton = (Button) findViewById(R.id.loginButton);
-        final EditText usernameView = (EditText) findViewById(R.id.usernameTextField);
-        final EditText passwordView = (EditText) findViewById(R.id.passwordTextField);
-        final TextView errorView = (TextView) findViewById(R.id.loginErrorLabel);
-        errorView.setVisibility(View.INVISIBLE);
+        loginButton = (Button) findViewById(R.id.loginButton);
+        usernameView = (EditText) findViewById(R.id.usernameTextField);
+        passwordView = (EditText) findViewById(R.id.passwordTextField);
+        checkB = (CheckBox) findViewById(R.id.checkBox);
 
 
-        loginButton.setOnClickListener(new View.OnClickListener()
-        {
+    }
+
             public void onClick(View v)
             {
+
+
+                //errorView.setVisibility(View.INVISIBLE);
+
+                /*
+                Context context = getApplicationContext();
+                CharSequence text = "Hello toast!";
+                int duration = Toast.LENGTH_SHORT;
+                */
+
+                //Toast toast = Toast.makeText(context, text, duration);
+
                 new Thread(new Runnable()
                 {
                     public void run()
                     {
                         try
                         {
+
+                            if(checkB.isChecked())
+                            {
+                                System.out.println("box is checked");
+
+                            }
 
                             final String username = usernameView.getText().toString();
                             final String password = passwordView.getText().toString();
@@ -51,8 +77,8 @@ public class MainActivity extends ActionBarActivity {
                             HttpsURLConnection connection = (HttpsURLConnection)url.openConnection();
 
                             connection.setRequestProperty("Accept-Encoding","");
-                            connection.setRequestProperty("Authorization","Basic " + new String(Base64.encode("bubblerugs:AJmK8DFMF0EpwVRzTlORtuwyJOcGzViDXrQKG63G".getBytes(),Base64.NO_WRAP)));
-                            //connection.setRequestProperty("Authorization","Basic " + new String(Base64.encode(new String(username + ":" +password).getBytes(),Base64.NO_WRAP)));
+                            //connection.setRequestProperty("Authorization","Basic " + new String(Base64.encode("bubblerugs:AJmK8DFMF0EpwVRzTlORtuwyJOcGzViDXrQKG63G".getBytes(),Base64.NO_WRAP)));
+                            connection.setRequestProperty("Authorization","Basic " + new String(Base64.encode(new String(username + ":" +password).getBytes(),Base64.NO_WRAP)));
 
                             connection.connect();
                             if(connection.getResponseCode() == 200)
@@ -61,7 +87,15 @@ public class MainActivity extends ActionBarActivity {
                             }
                             else
                             {
-                                System.out.println(connection.getResponseCode() + ": " +connection.getResponseMessage());
+                                MainActivity.this.runOnUiThread(new Runnable() {
+                                    public void run() {
+                                        Toast.makeText(getApplicationContext(), "Incorrect Login Credentials", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+
+                                //System.out.println(connection.getResponseCode() + ": " +connection.getResponseMessage());
+                                System.out.println("toasting");
+                                //add toast
                                // if(connection.getResponseCode() == )
                             }
                         }
@@ -72,7 +106,12 @@ public class MainActivity extends ActionBarActivity {
                     }
                 }).start();
             }
-        });
+
+
+
+    public void makeToast()
+    {
+        Toast.makeText(getApplicationContext(), "Incorrect Login Credentials", Toast.LENGTH_SHORT).show();
     }
 
 

@@ -14,18 +14,21 @@
 
     <EditText android:id="@+id/passwordTextField" android:background="#ffffffff" android:layout_height="wrap_content" android:layout_width="wrap_content" android:textColor="#ff000000" android:ems="10" android:inputType="textPassword" android:layout_toEndOf="@+id/usernameLabel" android:layout_toRightOf="@+id/usernameLabel" android:layout_alignTop="@+id/passwordLabel"/>
 
-    <Button android:id="@+id/loginButton" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_marginTop="56dp" android:textColor="#ff2cff3e" android:text="@string/login_text" android:layout_centerHorizontal="true" android:layout_below="@+id/passwordTextField"/>
+    <Button android:id="@+id/loginButton" android:onClick="onClick" android:layout_height="wrap_content" android:layout_width="wrap_content"
+        android:textColor="#ff2cff3e" android:text="@string/login_text"
+        android:layout_marginTop="24dp"
+        android:layout_below="@+id/checkBox"
+        android:layout_alignRight="@+id/checkBox"
+        android:layout_alignEnd="@+id/checkBox" />
 
-    <TextView
+    <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/login_error_text"
-        android:id="@+id/loginErrorLabel"
-        android:layout_toEndOf="@+id/passwordLabel"
-        android:visibility="visible"
+        android:text="Keep Me Logged In"
+        android:id="@+id/checkBox"
+        android:checked="false"
+        android:layout_marginTop="27dp"
         android:layout_below="@+id/passwordTextField"
-        android:layout_toRightOf="@+id/passwordLabel"
-        android:textColor="#ffff0011"
-        android:paddingTop="20dp" />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
