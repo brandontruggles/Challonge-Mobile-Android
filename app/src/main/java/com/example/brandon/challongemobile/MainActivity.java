@@ -105,13 +105,13 @@ public class MainActivity extends ActionBarActivity
                             else
                             {
                                 MainActivity.this.runOnUiThread(new Runnable()
+                            {
+                                public void run()
                                 {
-                                    public void run()
-                                    {
-                                        Toast.makeText(getApplicationContext(), "Incorrect Login Credentials", Toast.LENGTH_LONG).show();
-                                       // System.out.println("Error response code: " + connection.getResponseCode());
-                                    }
-                                });
+                                    Toast.makeText(getApplicationContext(), "Incorrect Login Credentials", Toast.LENGTH_LONG).show();
+                                    // System.out.println("Error response code: " + connection.getResponseCode());
+                                }
+                            });
                             }
                         }
                         catch (Exception e)
