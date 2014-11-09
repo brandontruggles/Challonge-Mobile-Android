@@ -12,5 +12,4 @@
     <string name="login_error_text">Incorrect login information!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_tournament_view">TournamentViewActivity</string>
-
 </resources>
