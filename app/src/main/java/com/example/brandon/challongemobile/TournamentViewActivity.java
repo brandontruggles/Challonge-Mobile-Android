@@ -5,10 +5,14 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import org.json.*;
@@ -16,13 +20,25 @@ import org.json.*;
 import javax.net.ssl.HttpsURLConnection;
 
 
-public class TournamentViewActivity extends ActionBarActivity {
+public class TournamentViewActivity extends ActionBarActivity
+{
+
+    ListView listView;
+    ArrayList<String>  tournList;
+    ArrayAdapter<String> arrayadapt;
+    String[] tournArray;
+    JSONArray tournaments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tournament_view);
+
+        listView = (ListView) findViewById(R.id.listView);
+        tournList = new ArrayList<String>();
+
+
 
         new Thread(new Runnable()
         {
@@ -31,8 +47,8 @@ public class TournamentViewActivity extends ActionBarActivity {
                 try
                 {
 
-                    final String username = getIntent().getExtras().getString("Username");
-                    final String password = getIntent().getExtras().getString("Password");
+                    //final String username = getIntent().getExtras().getString("Username");
+                    //final String password = getIntent().getExtras().getString("Password");
 
                     URL url = new URL("https://api.challonge.com/v1/tournaments.json?state=all");
 
@@ -51,13 +67,37 @@ public class TournamentViewActivity extends ActionBarActivity {
                         String data = "";
                         while((temp = b.readLine())!=null)
                             data+=temp;
-                        JSONArray tournaments = new JSONArray(data);
+                        tournaments = new JSONArray(data);
 
                         for(int i = 0;i<tournaments.length();i++)
                         {
                             JSONObject tournament = ((JSONObject)tournaments.get(i)).getJSONObject("tournament");
-                            System.out.println(tournament.getString("name"));
+                            System.out.println("cheese");
+                            tournList.add(tournament.getString("name"));
+
                         }
+
+                        tournArray= new String[tournList.size()];
+
+
+                        for(int j=0; j<tournArray.length; j++)
+                        {
+                            tournArray[j]=tournList.get(j);
+                        }
+
+                        System.out.println(tournList.size());
+                        System.out.println(tournArray.length);
+
+                        TournamentViewActivity.this.runOnUiThread(new Runnable()
+                        {
+                            public void run()
+                            {
+                                startList();
+
+                            }
+                        });
+
+
                     }
                     else
                     {
@@ -68,10 +108,34 @@ public class TournamentViewActivity extends ActionBarActivity {
                 {
                     e.printStackTrace();
                 }
+
+
+
             }
         }).start();
+           /*
+        while(tournaments.length() == tournList.size())
+        {
+            arrayadapt = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tournArray);
+
+            //System.out.println(tournArray[0]+"\n"+tournArray[1]+"\n"+tournArray[2]);
+
+            listView.setAdapter(arrayadapt);
+            break;
+        }
+        */
     }
 
+    public void startList()
+    {
+        System.out.println("in startList");
+
+        arrayadapt = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tournArray);
+
+        //System.out.println(tournArray[0]+"\n"+tournArray[1]+"\n"+tournArray[2]);
+
+        listView.setAdapter(arrayadapt);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
