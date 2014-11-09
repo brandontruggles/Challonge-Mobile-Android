@@ -4,7 +4,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.example.brandon.challongemobile.CreateTournament">
+    tools:context="com.example.brandon.challongemobile.CreateTournament"
+    android:background="#c0000000">
 
 
     <TextView
@@ -16,7 +17,8 @@
         android:textSize="@dimen/welcome_text_size"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:paddingBottom="@dimen/abc_action_bar_default_padding_material" />
+        android:paddingBottom="@dimen/abc_action_bar_default_padding_material"
+        android:textColor="#ffff8521" />
 
 
     <RadioGroup
@@ -30,7 +32,8 @@
         android:layout_height="wrap_content"
         android:text="@string/tourney_type_single_elimination"
         android:id="@+id/radioButton"
-        android:checked="true" />
+        android:checked="true"
+        android:textColor="#ffffffff" />
 
     <RadioButton
         android:layout_width="wrap_content"
@@ -40,21 +43,24 @@
         android:checked="false"
         android:layout_below="@+id/radioButton"
         android:layout_alignLeft="@+id/radioButton"
-        android:layout_alignStart="@+id/radioButton" />
+        android:layout_alignStart="@+id/radioButton"
+        android:textColor="#ffffffff" />
 
     <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tourney_type_round_robin"
         android:id="@+id/radioButton3"
-        android:checked="false" />
+        android:checked="false"
+        android:textColor="#ffffffff" />
 
     <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tourney_type_swiss"
         android:id="@+id/radioButton4"
-        android:checked="false" />
+        android:checked="false"
+        android:textColor="#ffffffff" />
 
     </RadioGroup>
 
@@ -66,7 +72,8 @@
         android:layout_above="@+id/editText4"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="59dp"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:textColorHint="#ffffffff" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -76,7 +83,8 @@
         android:layout_marginBottom="40dp"
         android:layout_above="@+id/button3"
         android:layout_centerHorizontal="true"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:textColorHint="#ffffffff" />
 
     <Button
         android:layout_width="wrap_content"
@@ -85,7 +93,8 @@
         android:id="@+id/button3"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:onClick="buttPress"/>
+        android:onClick="buttPress"
+        android:textColor="#ffff8521" />
 
 
 </RelativeLayout>

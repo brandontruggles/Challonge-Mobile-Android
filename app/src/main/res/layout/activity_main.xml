@@ -2,7 +2,7 @@
 
     <RelativeLayout android:id="@+id/layout" android:background="#c0000000" tools:context=".MainActivity" android:paddingBottom="@dimen/activity_vertical_margin" android:paddingTop="@dimen/activity_vertical_margin" android:paddingRight="@dimen/activity_horizontal_margin" android:paddingLeft="@dimen/activity_horizontal_margin" android:layout_height="match_parent" android:layout_width="match_parent" xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView android:id="@+id/titleLabel" android:layout_height="wrap_content" android:layout_width="wrap_content" android:gravity="center_horizontal" android:singleLine="false" android:textSize="@dimen/welcome_text_size" android:layout_marginTop="60dp" android:layout_alignParentTop="true" android:textColor="#ffffffff" android:text="@string/welcome_text"/>
+    <TextView android:id="@+id/titleLabel" android:layout_height="wrap_content" android:layout_width="wrap_content" android:gravity="center_horizontal" android:singleLine="false" android:textSize="@dimen/welcome_text_size" android:layout_marginTop="60dp" android:layout_alignParentTop="true" android:textColor="#ffff8521" android:text="@string/welcome_text"/>
 
     <TextView android:id="@+id/pleaseLoginLabel" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_marginTop="52dp" android:textColor="#ffffffff" android:text="@string/please_login_text" android:layout_centerHorizontal="true" android:layout_below="@+id/titleLabel"/>
 
@@ -15,11 +15,10 @@
     <EditText android:id="@+id/passwordTextField" android:background="#ffffffff" android:layout_height="wrap_content" android:layout_width="wrap_content" android:textColor="#ff000000" android:ems="10" android:inputType="textPassword" android:layout_toEndOf="@+id/usernameLabel" android:layout_toRightOf="@+id/usernameLabel" android:layout_alignTop="@+id/passwordLabel"/>
 
     <Button android:id="@+id/loginButton" android:onClick="onClick" android:layout_height="wrap_content" android:layout_width="wrap_content"
-        android:textColor="#ff2cff3e" android:text="@string/login_text"
-        android:layout_marginTop="24dp"
-        android:layout_below="@+id/checkBox"
-        android:layout_alignRight="@+id/checkBox"
-        android:layout_alignEnd="@+id/checkBox" />
+        android:textColor="#ffff8521" android:text="@string/login_text"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/passwordTextField"
+        android:layout_alignStart="@+id/passwordTextField" />
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -27,8 +26,9 @@
         android:text="Keep Me Logged In"
         android:id="@+id/checkBox"
         android:checked="false"
-        android:layout_marginTop="27dp"
+        android:layout_marginTop="36dp"
         android:layout_below="@+id/passwordTextField"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignLeft="@+id/passwordLabel"
+        android:layout_alignStart="@+id/passwordLabel" />
 
 </RelativeLayout>
