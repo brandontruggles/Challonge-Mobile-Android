@@ -13,4 +13,7 @@
     <string name="action_settings">Logout</string>
     <string name="title_activity_button_list">ButtonListActivity</string>
     <string name="title_activity_tournament_view">TournamentViewActivity</string>
+    <string name="title_activity_create_tournament">CreateTournament</string>
+    <string name="title_activity_search_tournaments">SearchTournaments</string>
+
 </resources>

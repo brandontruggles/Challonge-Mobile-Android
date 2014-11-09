@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -59,5 +60,21 @@ public class ChallongeHome extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void onMyTourn(View view)
+    {
+        Intent intent = new Intent(this,TournamentViewActivity.class);
+        startActivity(intent);
+        //finish();
+    }
+    public void onCreateTourn(View view)
+    {
+        Intent intent = new Intent(this,CreateTournament.class);
+        startActivity(intent);
+    }
+    public void onSearchTourn(View view)
+    {
+        Intent intent = new Intent(this,SearchTournaments.class);
+        startActivity(intent);
+    }
 
 }
