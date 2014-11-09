@@ -37,6 +37,10 @@
             android:name="com.example.brandon.challongemobile.SearchTournaments"
             android:label="@string/title_activity_search_tournaments" >
         </activity>
+        <activity
+            android:name="com.example.brandon.challongemobile.Organizations"
+            android:label="@string/title_activity_organizations" >
+        </activity>
     </application>
 
 </manifest>

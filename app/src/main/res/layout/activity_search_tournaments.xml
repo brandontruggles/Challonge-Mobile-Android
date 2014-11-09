@@ -7,5 +7,44 @@
     tools:context="com.example.brandon.challongemobile.SearchTournaments">
 
 
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
 
+        <EditText
+            android:layout_width="233dp"
+            android:layout_height="62dp"
+            android:id="@+id/editText"
+            android:layout_gravity="left|top"
+            android:text=""
+            android:hint="ENTER ORGANIZATION"/>
+
+        <EditText
+            android:layout_width="230dp"
+            android:layout_height="57dp"
+            android:id="@+id/editText2"
+            android:layout_gravity="left|center_vertical"
+            android:text=""
+            android:hint="ENTER URL TAG"/>
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="113dp"
+            android:layout_height="58dp"
+            android:text="FIND"
+            android:id="@+id/button"
+            android:layout_gravity="right|top"
+            android:onClick="onOrgClick"/>
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="118dp"
+            android:layout_height="60dp"
+            android:text="FIND"
+            android:id="@+id/button2"
+            android:layout_gravity="right|center_vertical"
+            android:onClick="onTagClick"/>
+    </FrameLayout>
 </RelativeLayout>

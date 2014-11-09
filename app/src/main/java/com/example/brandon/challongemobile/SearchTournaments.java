@@ -1,9 +1,12 @@
 package com.example.brandon.challongemobile;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 
 
 public class SearchTournaments extends ActionBarActivity {
@@ -35,5 +38,29 @@ public class SearchTournaments extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onOrgClick(View view)
+    {
+        EditText editText = (EditText) findViewById(R.id.editText);
+
+        String org =editText.getText().toString();
+
+        System.out.println(org);
+
+        Intent intent = new Intent(this,Organizations.class);
+        intent.putExtra("org",org);
+        startActivity(intent);
+
+
+    }
+
+    public void onTagClick(View view)
+    {
+        EditText editText = (EditText) findViewById(R.id.editText2);
+
+        String tag =editText.getText().toString();
+        System.out.println(tag);
+
     }
 }
