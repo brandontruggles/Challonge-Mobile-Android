@@ -164,7 +164,7 @@ public class MainActivity extends ActionBarActivity
 
         }
 
-        Intent intent = new Intent(this,TournamentViewActivity.class);
+        Intent intent = new Intent(this,ChallongeHome.class);
         intent.putExtra("Username",username);
         intent.putExtra("Password",password);
         startActivity(intent);

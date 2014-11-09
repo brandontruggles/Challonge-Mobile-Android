@@ -31,8 +31,8 @@ public class TournamentViewActivity extends ActionBarActivity {
                 try
                 {
 
-                    final String username = getIntent().getExtras().getString("Username");
-                    final String password = getIntent().getExtras().getString("Password");
+                    //final String username = getIntent().getExtras().getString("Username");
+                    //final String password = getIntent().getExtras().getString("Password");
 
                     URL url = new URL("https://api.challonge.com/v1/tournaments.json?state=all");
 
@@ -56,6 +56,7 @@ public class TournamentViewActivity extends ActionBarActivity {
                         for(int i = 0;i<tournaments.length();i++)
                         {
                             JSONObject tournament = ((JSONObject)tournaments.get(i)).getJSONObject("tournament");
+                            System.out.println(tournaments.get(i));
                             System.out.println(tournament.getString("name"));
                         }
                     }
