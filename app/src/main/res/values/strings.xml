@@ -23,5 +23,6 @@
     <string name="title_activity_create_tournament">CreateTournament</string>
     <string name="title_activity_search_tournaments">SearchTournaments</string>
     <string name="title_activity_organizations">Organizations</string>
+    <string name="title_activity_show_player">ShowPlayer</string>
 
 </resources>

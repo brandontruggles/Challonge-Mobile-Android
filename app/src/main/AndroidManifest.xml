@@ -41,6 +41,10 @@
             android:name="com.example.brandon.challongemobile.Organizations"
             android:label="@string/title_activity_organizations" >
         </activity>
+        <activity
+            android:name="com.example.brandon.challongemobile.ShowPlayer"
+            android:label="@string/title_activity_show_player" >
+        </activity>
     </application>
 
 </manifest>

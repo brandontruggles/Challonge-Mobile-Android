@@ -11,39 +11,32 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Iterator;
-
-import org.json.*;
 
 import javax.net.ssl.HttpsURLConnection;
 
 
-public class TournamentViewActivity extends ActionBarActivity
-{
+public class ShowPlayer extends ActionBarActivity {
 
     ListView listView;
-    ArrayList<String>  tournList;
-    ArrayList<String>  urlList;
+    ArrayList<String>  playerList;
     ArrayAdapter<String> arrayadapt;
-    String[] tournArray;
-    JSONArray tournaments;
+    String[] playerArray;
+    JSONArray players;
     String data;
-
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tournament_view);
-
-        listView = (ListView) findViewById(R.id.listView);
-        tournList = new ArrayList<String>();
-        urlList = new ArrayList<String>();
+        setContentView(R.layout.activity_show_player);
+        listView = (ListView) findViewById(R.id.listView3);
+        playerList = new ArrayList<String>();
 
         new Thread(new Runnable()
         {
@@ -55,7 +48,7 @@ public class TournamentViewActivity extends ActionBarActivity
                     //final String username = getIntent().getExtras().getString("Username");
                     //final String password = getIntent().getExtras().getString("Password");
 
-                    URL url = new URL("https://api.challonge.com/v1/tournaments.json?state=all");
+                    URL url = new URL("https://api.challonge.com/v1/tournaments/" + getIntent().getExtras().getString("data") +".json?include_participants=1");
 
                     HttpsURLConnection connection = (HttpsURLConnection)url.openConnection();
 
@@ -72,29 +65,30 @@ public class TournamentViewActivity extends ActionBarActivity
                         String data = "";
                         while((temp = b.readLine())!=null)
                             data+=temp;
-                        tournaments = new JSONArray(data);
 
-                        for(int i = 0;i<tournaments.length();i++)
+                            JSONObject tournament = new JSONObject(data);
+                            tournament = tournament.getJSONObject("tournament");
+
+                            JSONArray participants = tournament.getJSONArray("participants");
+
+                            for(int i = 0;i<participants.length();i++)
+                            {
+                                JSONObject player = participants.getJSONObject(i).getJSONObject("participant");
+                                playerList.add(player.getString("name"));
+                            }
+
+                        playerArray= new String[playerList.size()];
+
+
+                        for(int j=0; j<playerArray.length; j++)
                         {
-                            JSONObject tournament = ((JSONObject)tournaments.get(i)).getJSONObject("tournament");
-                            System.out.println("cheese");
-                            tournList.add(tournament.getString("name"));
-                            urlList.add(tournament.getString("url"));
-
+                            playerArray[j]=playerList.get(j);
                         }
 
-                        tournArray= new String[tournList.size()];
+                        System.out.println(playerList.size());
+                        System.out.println(playerArray.length);
 
-
-                        for(int j=0; j<tournArray.length; j++)
-                        {
-                            tournArray[j]=tournList.get(j);
-                        }
-
-                        System.out.println(tournList.size());
-                        System.out.println(tournArray.length);
-
-                        TournamentViewActivity.this.runOnUiThread(new Runnable()
+                        ShowPlayer.this.runOnUiThread(new Runnable()
                         {
                             public void run()
                             {
@@ -121,10 +115,38 @@ public class TournamentViewActivity extends ActionBarActivity
         }).start();
     }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_show_player, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+    public void runActivity(String data)
+    {
+        //Intent intent = new Intent(this,ShowPlayer.class);
+        //intent.putExtra("data",data);
+       // startActivity(intent);
+    }
     public void startList()
     {
 
-        arrayadapt = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tournArray);
+        arrayadapt = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, playerArray);
 
         listView.setAdapter(arrayadapt);
 
@@ -132,7 +154,7 @@ public class TournamentViewActivity extends ActionBarActivity
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
-                final String text = (String)urlList.get(position);
+                final String text = ((TextView)view).getText().toString();
                 new Thread(new Runnable()
                 {
                     public void run()
@@ -163,15 +185,13 @@ public class TournamentViewActivity extends ActionBarActivity
                                     data+=temp;
                                 //System.out.println(data);
 
-                                TournamentViewActivity.this.runOnUiThread(new Runnable()
+                                ShowPlayer.this.runOnUiThread(new Runnable()
                                 {
                                     public void run()
                                     {
-                                         runActivity(text);
+                                        runActivity(data);
                                     }
                                 });
-
-
                             }
                             else
                             {
@@ -182,46 +202,9 @@ public class TournamentViewActivity extends ActionBarActivity
                         {
                             e.printStackTrace();
                         }
-
-
-
                     }
                 }).start();
-
             }
         });
-    }
-
-    public void runActivity(String data)
-    {
-        Intent intent = new Intent(this,ShowPlayer.class);
-        intent.putExtra("data",data);
-        startActivity(intent);
-
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_tournament_view, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings)
-        {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }
