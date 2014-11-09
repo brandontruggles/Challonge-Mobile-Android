@@ -88,7 +88,7 @@ public class MainActivity extends ActionBarActivity
                             final String username = usernameView.getText().toString();
                             final String password = passwordView.getText().toString();
 
-                            URL url = new URL("https://api.challonge.com/v1/tournaments.xml?state=in_progress");
+                            URL url = new URL("https://api.challonge.com/v1/tournaments.json?state=all");
 
                             HttpsURLConnection connection = (HttpsURLConnection)url.openConnection();
 
@@ -164,7 +164,9 @@ public class MainActivity extends ActionBarActivity
 
         }
 
-        Intent intent = new Intent(this,ChallongeHome.class);
+        Intent intent = new Intent(this,TournamentViewActivity.class);
+        intent.putExtra("Username",username);
+        intent.putExtra("Password",password);
         startActivity(intent);
         finish();
     }

@@ -53,7 +53,7 @@ public class ChallongeHome extends ActionBarActivity {
             e.printStackTrace();}
             Intent intent = new Intent(this,MainActivity.class);
             startActivity(intent);
-            //finish();
+            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);
