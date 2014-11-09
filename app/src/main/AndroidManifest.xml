@@ -24,11 +24,18 @@
         </activity>
         <activity
             android:name="com.example.brandon.challongemobile.TournamentViewActivity"
-            android:label="@string/title_activity_tournament_view"
-        />
-            <activity
+            android:label="@string/title_activity_tournament_view" />
+        <activity
             android:name="com.example.brandon.challongemobile.ButtonListActivity"
             android:label="@string/title_activity_button_list" >
+        </activity>
+        <activity
+            android:name="com.example.brandon.challongemobile.CreateTournament"
+            android:label="@string/title_activity_create_tournament" >
+        </activity>
+        <activity
+            android:name="com.example.brandon.challongemobile.SearchTournaments"
+            android:label="@string/title_activity_search_tournaments" >
         </activity>
     </application>
 
