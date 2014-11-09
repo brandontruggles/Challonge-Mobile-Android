@@ -10,6 +10,13 @@
     <string name="title_activity_challonge_home">ChallongeHome</string>
     <string name="hello_world">Hello world!</string>
     <string name="login_error_text">Incorrect login information!</string>
+    <string name="tourney_create_label_text">Create a New Tournament</string>
+    <string name="tourney_name_label_text">Tournament Name:</string>
+    <string name="tourney_type_label_text">Tournament Type:</string>
+    <string name="tourney_type_single_elimination">Single Elimination</string>
+    <string name="tourney_type_double_elimination">Double Elimination</string>
+    <string name="tourney_type_round_robin">Round Robin</string>
+    <string name="tourney_type_swiss">Swiss</string>
     <string name="action_settings">Logout</string>
     <string name="title_activity_button_list">ButtonListActivity</string>
     <string name="title_activity_tournament_view">TournamentViewActivity</string>

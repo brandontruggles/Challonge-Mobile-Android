@@ -7,5 +7,85 @@
     tools:context="com.example.brandon.challongemobile.CreateTournament">
 
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tourney_create_label_text"
+        android:id="@+id/textView"
+        android:gravity="center"
+        android:textSize="@dimen/welcome_text_size"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:paddingBottom="@dimen/abc_action_bar_default_padding_material" />
+
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true">
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tourney_type_single_elimination"
+        android:id="@+id/radioButton"
+        android:checked="true" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tourney_type_double_elimination"
+        android:id="@+id/radioButton2"
+        android:checked="false"
+        android:layout_below="@+id/radioButton"
+        android:layout_alignLeft="@+id/radioButton"
+        android:layout_alignStart="@+id/radioButton" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tourney_type_round_robin"
+        android:id="@+id/radioButton3"
+        android:checked="false" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tourney_type_swiss"
+        android:id="@+id/radioButton4"
+        android:checked="false" />
+
+    </RadioGroup>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText3"
+        android:hint="TOURNAMENT NAME"
+        android:layout_above="@+id/editText4"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="59dp"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText4"
+        android:hint="TOURNAMENT URL"
+        android:layout_marginBottom="40dp"
+        android:layout_above="@+id/button3"
+        android:layout_centerHorizontal="true"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CREATE"
+        android:id="@+id/button3"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="buttPress"/>
+
 
 </RelativeLayout>

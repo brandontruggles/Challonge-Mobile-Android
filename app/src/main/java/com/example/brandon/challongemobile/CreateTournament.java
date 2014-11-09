@@ -1,10 +1,14 @@
 package com.example.brandon.challongemobile;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.RadioButton;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -13,6 +17,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -29,7 +34,11 @@ public class CreateTournament extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_tournament);
+    }
 
+
+    public void buttPress(View view)
+    {
         new Thread(new Runnable() {
             public void run() {
 
@@ -47,23 +56,62 @@ public class CreateTournament extends ActionBarActivity {
 
                     OutputStreamWriter writer = new OutputStreamWriter(os);
 
-                    writer.write("tournament[name]=test15&tournament[url]=challongemobiletest15");
+                    EditText nameField = (EditText) findViewById(R.id.editText3);
+                    String name = nameField.getText().toString();
+
+                    EditText urlField = (EditText) findViewById(R.id.editText4);
+                    String urlText = urlField.getText().toString();
+
+                    String type = "";
+                    RadioButton radio = (RadioButton) findViewById(R.id.radioButton);
+                    RadioButton radio2 = (RadioButton) findViewById(R.id.radioButton2);
+                    RadioButton radio3 = (RadioButton) findViewById(R.id.radioButton3);
+                    RadioButton radio4 = (RadioButton) findViewById(R.id.radioButton4);
+
+                    if (radio.isChecked())
+                        type = radio.getText().toString().toLowerCase();
+                    if (radio2.isChecked())
+                        type = radio2.getText().toString().toLowerCase();
+                    if (radio3.isChecked())
+                        type = radio3.getText().toString().toLowerCase();
+                    if (radio4.isChecked())
+                        type = radio4.getText().toString().toLowerCase();
+
+                    System.out.println(type);
+
+                    writer.write("tournament[name]=" + name + "&tournament[tournament_type]=" + type + "&tournament[url]=" + urlText);
 
                     writer.flush();
                     writer.close();
                     os.close();
 
+                    if(connection.getResponseCode() == 200)
+                    {
+                        CreateTournament.this.runOnUiThread(new Runnable()
+                            {
+                                public void run()
+                                {
+                                    goToHome();
+                                }
+                            });
+
+
+                    }
                     System.out.println(connection.getResponseCode());
                     System.out.println(connection.getResponseMessage());
 
-                } catch (Exception e)
-                {
+                   // BufferedReader b = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
+                   // String s = "";
+                   // while ((s = b.readLine()) != null)
+                     //   System.out.println(s);
+
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         }).start();
-    }
 
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -71,6 +119,14 @@ public class CreateTournament extends ActionBarActivity {
         getMenuInflater().inflate(R.menu.menu_create_tournament, menu);
         return true;
     }
+
+    public void goToHome()
+    {
+        Intent intent = new Intent(this,ChallongeHome.class);
+        startActivity(intent);
+        finish();
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
