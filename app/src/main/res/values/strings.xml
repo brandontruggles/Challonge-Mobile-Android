@@ -7,7 +7,7 @@
     <string name="login_text">Login</string>
     <string name="username_text">Username:</string>
     <string name="password_text">API Key:</string>
-    <string name="title_activity_challonge_home">ChallongeHome</string>
+    <string name="title_activity_challonge_home">Challonge Home</string>
     <string name="hello_world">Hello world!</string>
     <string name="login_error_text">Incorrect login information!</string>
     <string name="tourney_create_label_text">Create a New Tournament</string>
@@ -19,10 +19,10 @@
     <string name="tourney_type_swiss">Swiss</string>
     <string name="action_settings">Logout</string>
     <string name="title_activity_button_list">ButtonListActivity</string>
-    <string name="title_activity_tournament_view">TournamentViewActivity</string>
-    <string name="title_activity_create_tournament">CreateTournament</string>
+    <string name="title_activity_tournament_view">View My Tournaments</string>
+    <string name="title_activity_create_tournament">Create New Tournament</string>
     <string name="title_activity_search_tournaments">SearchTournaments</string>
     <string name="title_activity_organizations">Organizations</string>
-    <string name="title_activity_show_player">ShowPlayer</string>
+    <string name="title_activity_show_player">Show Players</string>
 
 </resources>

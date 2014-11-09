@@ -16,6 +16,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class ShowPlayer extends ActionBarActivity {
     String[] playerArray;
     JSONArray players;
     String data;
+    BufferedReader b;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,9 +62,12 @@ public class ShowPlayer extends ActionBarActivity {
 
                     if(connection.getResponseCode() == 200)
                     {
-                        BufferedReader b = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                        b = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                         String temp = "";
                         String data = "";
+
+
+
                         while((temp = b.readLine())!=null)
                             data+=temp;
 
@@ -115,6 +120,10 @@ public class ShowPlayer extends ActionBarActivity {
         }).start();
     }
 
+    public void noPlayers()
+    {
+       // TextView tv = (TextView) findViewById(R.id.);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -50,6 +50,7 @@
             android:label="@string/title_activity_organizations" >
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name="com.example.brandon.challongemobile.ShowPlayer"
             android:label="@string/title_activity_show_player" >
         </activity>
