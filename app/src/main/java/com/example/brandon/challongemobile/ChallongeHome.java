@@ -49,9 +49,8 @@ public class ChallongeHome extends ActionBarActivity {
 
             }
             catch (Exception e)
-            {e.printStackTrace();}
-
-
+            {
+            e.printStackTrace();}
             Intent intent = new Intent(this,MainActivity.class);
             startActivity(intent);
             //finish();

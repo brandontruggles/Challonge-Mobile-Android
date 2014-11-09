@@ -23,13 +23,12 @@
             android:label="@string/title_activity_challonge_home" >
         </activity>
         <activity
-<<<<<<< HEAD
             android:name="com.example.brandon.challongemobile.TournamentViewActivity"
-            android:label="@string/title_activity_tournament_view" >
-=======
+            android:label="@string/title_activity_tournament_view"
+        />
+            <activity
             android:name="com.example.brandon.challongemobile.ButtonListActivity"
             android:label="@string/title_activity_button_list" >
->>>>>>> e50ed62c5060d66402e9ebe54a595de3b2155ab7
         </activity>
     </application>
 
