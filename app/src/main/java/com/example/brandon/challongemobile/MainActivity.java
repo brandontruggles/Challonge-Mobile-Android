@@ -65,7 +65,7 @@ public class MainActivity extends ActionBarActivity
                 //connection.setRequestProperty("Authorization","Basic " + new String(Base64.encode("bubblerugs:AJmK8DFMF0EpwVRzTlORtuwyJOcGzViDXrQKG63G".getBytes(),Base64.NO_WRAP)));
                 connection.setRequestProperty("Authorization","Basic " + new String(Base64.encode(new String(scan.nextLine() + ":" +scan.nextLine()).getBytes(),Base64.NO_WRAP)));
 
-                handleSuccess("","");
+
             }
         }
         catch (Exception e)
@@ -153,7 +153,7 @@ public class MainActivity extends ActionBarActivity
             try {
                 FileOutputStream fos = openFileOutput("userCred.txt",Context.MODE_PRIVATE);
                 //fos.write((username+"\n"+password).getBytes());
-                fos.write(("bubblerugs"+"\n"+"AJmK8DFMF0EpwVRzTlORtuwyJOcGzViDXrQKG63G").getBytes());
+                fos.write(("bubblerugs"+"\n"+password).getBytes());
 
                 fos.close();
             }

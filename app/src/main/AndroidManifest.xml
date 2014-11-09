@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.brandon.challongemobile.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,8 +19,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ChallongeHome"
+            android:name="com.example.brandon.challongemobile.ChallongeHome"
             android:label="@string/title_activity_challonge_home" >
+        </activity>
+        <activity
+            android:name="com.example.brandon.challongemobile.TournamentViewActivity"
+            android:label="@string/title_activity_tournament_view" >
         </activity>
     </application>
 
