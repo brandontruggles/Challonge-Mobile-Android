@@ -5,11 +5,13 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
+            android:screenOrientation="portrait"
             android:name="com.example.brandon.challongemobile.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
@@ -19,25 +21,31 @@
             </intent-filter>
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name="com.example.brandon.challongemobile.ChallongeHome"
             android:label="@string/title_activity_challonge_home" >
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name="com.example.brandon.challongemobile.TournamentViewActivity"
             android:label="@string/title_activity_tournament_view" />
         <activity
+            android:screenOrientation="portrait"
             android:name="com.example.brandon.challongemobile.ButtonListActivity"
             android:label="@string/title_activity_button_list" >
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name="com.example.brandon.challongemobile.CreateTournament"
             android:label="@string/title_activity_create_tournament" >
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name="com.example.brandon.challongemobile.SearchTournaments"
             android:label="@string/title_activity_search_tournaments" >
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name="com.example.brandon.challongemobile.Organizations"
             android:label="@string/title_activity_organizations" >
         </activity>
