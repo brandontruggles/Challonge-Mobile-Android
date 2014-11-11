@@ -60,7 +60,7 @@ public class TournamentViewActivity extends ActionBarActivity
                     HttpsURLConnection connection = (HttpsURLConnection)url.openConnection();
 
                     connection.setRequestProperty("Accept-Encoding","");
-                    connection.setRequestProperty("Authorization","Basic " + new String(Base64.encode("bubblerugs:AJmK8DFMF0EpwVRzTlORtuwyJOcGzViDXrQKG63G".getBytes(), Base64.NO_WRAP)));
+                    connection.setRequestProperty("Authorization","Basic " + new String(Base64.encode("dfu3:KULR1goMHWqp0UOcIbXljRAet7pLgXDQma0IxKO1".getBytes(), Base64.NO_WRAP)));
                     //connection.setRequestProperty("Authorization","Basic " + new String(Base64.encode(new String(username + ":" +password).getBytes(),Base64.NO_WRAP)));
 
                     connection.connect();
@@ -149,7 +149,7 @@ public class TournamentViewActivity extends ActionBarActivity
 
 
                             connection.setRequestProperty("Accept-Encoding","");
-                            connection.setRequestProperty("Authorization","Basic " + new String(Base64.encode("bubblerugs:AJmK8DFMF0EpwVRzTlORtuwyJOcGzViDXrQKG63G".getBytes(), Base64.NO_WRAP)));
+                            connection.setRequestProperty("Authorization","Basic " + new String(Base64.encode("dfu3:KULR1goMHWqp0UOcIbXljRAet7pLgXDQma0IxKO1".getBytes(), Base64.NO_WRAP)));
                             //connection.setRequestProperty("Authorization","Basic " + new String(Base64.encode(new String(username + ":" +password).getBytes(),Base64.NO_WRAP)));
 
                             connection.connect();
@@ -194,7 +194,7 @@ public class TournamentViewActivity extends ActionBarActivity
 
     public void runActivity(String data)
     {
-        Intent intent = new Intent(this,ShowPlayer.class);
+        Intent intent = new Intent(this,ButtonListActivity.class);
         intent.putExtra("data",data);
         startActivity(intent);
 
