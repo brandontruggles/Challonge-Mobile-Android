@@ -7,27 +7,25 @@ import android.view.MenuItem;
 import android.webkit.WebView;
 
 
-public class ButtonListActivity extends ActionBarActivity {
+public class ShowBracket extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_button_list);
+        setContentView(R.layout.activity_show_bracket);
 
         WebView webview = new WebView(this);
         setContentView(webview);
 
         webview.loadUrl("http://challonge.com/"+getIntent().getExtras().getString("data"));
-
-
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_button_list, menu);
+        getMenuInflater().inflate(R.menu.menu_show_bracket, menu);
         return true;
     }
 

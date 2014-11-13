@@ -1,33 +1,27 @@
 package com.example.brandon.challongemobile;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.webkit.WebView;
 
 
-public class ButtonListActivity extends ActionBarActivity {
+public class TournamentOptions extends ActionBarActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_button_list);
-
-        WebView webview = new WebView(this);
-        setContentView(webview);
-
-        webview.loadUrl("http://challonge.com/"+getIntent().getExtras().getString("data"));
-
-
+        setContentView(R.layout.activity_tournament_options);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_button_list, menu);
+        getMenuInflater().inflate(R.menu.menu_tournament_options, menu);
         return true;
     }
 
@@ -44,5 +38,14 @@ public class ButtonListActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void bracketClick(View view)
+    {
+
+        String data= getIntent().getExtras().getString("data");
+        Intent intent = new Intent(this,ShowBracket.class);
+        intent.putExtra("data",data);
+        startActivity(intent);
     }
 }

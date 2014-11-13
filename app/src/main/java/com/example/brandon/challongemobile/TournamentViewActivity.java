@@ -18,6 +18,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.concurrent.SynchronousQueue;
 
 import org.json.*;
 
@@ -167,6 +168,8 @@ public class TournamentViewActivity extends ActionBarActivity
                                 {
                                     public void run()
                                     {
+                                        for(int j=0; j < urlList.size(); j++)
+                                            System.out.println(urlList.get(j));
                                          runActivity(text);
                                     }
                                 });
@@ -194,7 +197,7 @@ public class TournamentViewActivity extends ActionBarActivity
 
     public void runActivity(String data)
     {
-        Intent intent = new Intent(this,ButtonListActivity.class);
+        Intent intent = new Intent(this,TournamentOptions.class);
         intent.putExtra("data",data);
         startActivity(intent);
 
