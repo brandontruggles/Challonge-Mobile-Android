@@ -24,5 +24,7 @@
     <string name="title_activity_search_tournaments">SearchTournaments</string>
     <string name="title_activity_organizations">Organizations</string>
     <string name="title_activity_show_player">Show Players</string>
+    <string name="title_activity_tournament_options">TournamentOptions</string>
+    <string name="title_activity_show_bracket">ShowBracket</string>
 
 </resources>

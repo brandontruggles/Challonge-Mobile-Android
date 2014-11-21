@@ -4,14 +4,23 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebView;
 
 
 public class ButtonListActivity extends ActionBarActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_button_list);
+
+        WebView webview = new WebView(this);
+        setContentView(webview);
+
+        webview.loadUrl("http://challonge.com/"+getIntent().getExtras().getString("data"));
+
+
     }
 
 
