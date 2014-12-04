@@ -4,15 +4,15 @@ This is a simple mobile app for Android used to manage a user's Challonge accoun
 
 <b> Features to be Implemented </b>
 
--Dynamically drawn tournament brackets (will replace the current bracket viewing scheme, which simply opens bracket URLs through a WebView)
--Support for teams/organizations
--View tournaments without having to log in
--Give TO's the ability to send texts to players (similar to the SMSDash web app)
--Better screen rotation compatibility
+-Dynamically drawn tournament brackets (will replace the current bracket viewing scheme, which simply opens bracket URLs through a WebView)<br>
+-Support for teams/organizations<br>
+-View tournaments without having to log in<br>
+-Give TO's the ability to send texts to players (similar to the SMSDash web app)<br>
+-Better screen rotation compatibility<br>
 -Lots of bug fixes
 
 <b> Contributors <b>
 
--Brandon Ruggles
--Dante Urso
+-Brandon Ruggles<br>
+-Dante Urso<br>
 -John Moreira
