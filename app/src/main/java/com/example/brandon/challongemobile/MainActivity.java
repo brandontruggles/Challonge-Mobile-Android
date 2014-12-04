@@ -4,37 +4,26 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.widget.CheckBox;
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.PrintWriter;
-import java.net.Authenticator;
-import javax.net.ssl.HttpsURLConnection;
-import java.net.PasswordAuthentication;
-import java.net.URL;
 import java.util.Scanner;
 
 
 public class MainActivity extends ActionBarActivity
 {
-    Button loginButton;
-    EditText usernameView;
-    EditText passwordView;
-    CheckBox checkB;
-
+    private Button loginButton;
+    private EditText usernameView;
+    private EditText passwordView;
+    private CheckBox checkB;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -46,84 +35,90 @@ public class MainActivity extends ActionBarActivity
         usernameView = (EditText) findViewById(R.id.usernameTextField);
         passwordView = (EditText) findViewById(R.id.passwordTextField);
         checkB = (CheckBox) findViewById(R.id.checkBox);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.INVISIBLE);
+        ConnectionManager.init();
 
-        System.out.println("on create");
-
-        String content;
-        BufferedReader in;
-        try {
+        try
+        {
             File file = new File(getFilesDir(),"userCred.txt");
             Scanner scan = new Scanner(file);
             if(file.exists())
             {
-                //System.out.println("file exists");
-                URL url = new URL("https://api.challonge.com/v1/tournaments.xml?state=in_progress");
+                ConnectionManager.setUsername(scan.nextLine());
 
-                HttpsURLConnection connection = (HttpsURLConnection)url.openConnection();
+                if(!ConnectionManager.getUsername().equals("login credentials"))
+                {
+                    ConnectionManager.setPassword(scan.nextLine());
+                    new Thread(new Runnable()
+                    {
+                        public void run()
+                        {
+                            loginButton.setVisibility(View.INVISIBLE);
+                            progressBar.setVisibility(View.VISIBLE);
 
-                connection.setRequestProperty("Accept-Encoding","");
-                //connection.setRequestProperty("Authorization","Basic " + new String(Base64.encode("bubblerugs:AJmK8DFMF0EpwVRzTlORtuwyJOcGzViDXrQKG63G".getBytes(),Base64.NO_WRAP)));
-                connection.setRequestProperty("Authorization","Basic " + new String(Base64.encode(new String(scan.nextLine() + ":" +scan.nextLine()).getBytes(),Base64.NO_WRAP)));
+                            ConnectionManager.login();
 
-                handleSuccess("","");
+                            final int responseCode = ConnectionManager.getResponseCode();
+                            final String responseMessage = ConnectionManager.getResponseMessage();
+                            if (responseCode == 200)
+                                handleSuccess();
+                            else
+                            {
+                                runOnUiThread(new Runnable()
+                                {
+                                    public void run()
+                                    {
+                                        Toast.makeText(getApplicationContext(), responseCode + ": " + responseMessage, Toast.LENGTH_LONG).show();
+                                        loginButton.setVisibility(View.VISIBLE);
+                                        progressBar.setVisibility(View.INVISIBLE);
+                                    }
+                                });
+                            }
+                        }
+                    }).start();
+                }
             }
         }
         catch (Exception e)
         {
-            System.out.println("File Not Found");
+            e.printStackTrace();
         }
-
-
     }
 
-            public void onClick(View v)
+    public void onClick(View v)
+    {
+        ConnectionManager.setUsername("bubblerugs");//usernameView.getText().toString();"bubblerugs";"dfu3";
+        ConnectionManager.setPassword("AJmK8DFMF0EpwVRzTlORtuwyJOcGzViDXrQKG63G");//passwordView.getText().toString();"AJmK8DFMF0EpwVRzTlORtuwyJOcGzViDXrQKG63G";"KULR1goMHWqp0UOcIbXljRAet7pLgXDQma0IxKO1";
+        loginButton.setVisibility(View.INVISIBLE);
+        progressBar.setVisibility(View.VISIBLE);
+
+        new Thread(new Runnable()
+        {
+            public void run()
             {
-                new Thread(new Runnable()
+                ConnectionManager.login();
+
+                final int responseCode = ConnectionManager.getResponseCode();
+                final String responseMessage = ConnectionManager.getResponseMessage();
+
+                if(responseCode == 200)
+                    handleSuccess();
+                else
                 {
-                    public void run()
+                    runOnUiThread(new Runnable()
                     {
-                        try
+                        public void run()
                         {
-
-                            final String username = usernameView.getText().toString();
-                            final String password = passwordView.getText().toString();
-
-                            URL url = new URL("https://api.challonge.com/v1/tournaments.json?state=all");
-
-                            HttpsURLConnection connection = (HttpsURLConnection)url.openConnection();
-
-                            connection.setRequestProperty("Accept-Encoding","");
-
-                            connection.setRequestProperty("Authorization","Basic " + new String(Base64.encode("dfu3:KULR1goMHWqp0UOcIbXljRAet7pLgXDQma0IxKO1".getBytes(),Base64.NO_WRAP)));
-                            //connection.setRequestProperty("Authorization","Basic " + new String(Base64.encode(new String(username + ":" +password).getBytes(),Base64.NO_WRAP)));
-
-                            connection.connect();
-
-                            if(connection.getResponseCode() == 200)
-                            {
-                                handleSuccess(username,password);
-                            }
-                            else
-                            {
-                                MainActivity.this.runOnUiThread(new Runnable()
-                            {
-                                public void run()
-                                {
-                                    Toast.makeText(getApplicationContext(), "Incorrect Login Credentials", Toast.LENGTH_LONG).show();
-                                    // System.out.println("Error response code: " + connection.getResponseCode());
-                                }
-                            });
-                            }
+                            Toast.makeText(getApplicationContext(), responseCode + ": " + responseMessage, Toast.LENGTH_LONG).show();
+                            loginButton.setVisibility(View.VISIBLE);
+                            progressBar.setVisibility(View.INVISIBLE);
                         }
-                        catch (Exception e)
-                        {
-                            e.printStackTrace();
-                        }
-                    }
-                }).start();
+                    });
+                }
             }
-
-
+        }).start();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -144,18 +139,14 @@ public class MainActivity extends ActionBarActivity
         return super.onOptionsItemSelected(item);
     }
 
-    private void handleSuccess(String username, String password)
+    private void handleSuccess()
     {
-        System.out.println("Success");
-
         if(checkB.isChecked())
         {
-
-            try {
+            try
+            {
                 FileOutputStream fos = openFileOutput("userCred.txt",Context.MODE_PRIVATE);
-                //fos.write((username+"\n"+password).getBytes());
-                fos.write(("bubblerugs"+"\n"+"AJmK8DFMF0EpwVRzTlORtuwyJOcGzViDXrQKG63G").getBytes());
-
+                fos.write((ConnectionManager.getUsername()+"\n"+ConnectionManager.getPassword()).getBytes());
                 fos.close();
             }
             catch(Exception e)
@@ -164,10 +155,7 @@ public class MainActivity extends ActionBarActivity
             }
 
         }
-
         Intent intent = new Intent(this,ChallongeHome.class);
-        intent.putExtra("Username",username);
-        intent.putExtra("Password",password);
         startActivity(intent);
         finish();
     }
