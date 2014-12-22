@@ -1,142 +1,164 @@
 package com.example.brandon.challongemobile;
 
-import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.net.ssl.HttpsURLConnection;
-
-
-public class CreateTournament extends ActionBarActivity {
+public class CreateTournament extends ActionBarActivity
+{
+    private ProgressBar loadingCircle;
+    private TextView title;
+    private EditText nameField;
+    private EditText urlField;
+    private RadioButton radio;
+    private RadioButton radio2;
+    private RadioButton radio3;
+    private RadioButton radio4;
+    private Button createButton;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_tournament);
+        loadingCircle = (ProgressBar)findViewById(R.id.progressBar4);
+        title = (TextView) findViewById(R.id.textView);
+        loadingCircle.setVisibility(View.INVISIBLE);
+        nameField = (EditText) findViewById(R.id.editText3);
+        urlField = (EditText) findViewById(R.id.editText4);
+        radio = (RadioButton) findViewById(R.id.radioButton);
+        radio2 = (RadioButton) findViewById(R.id.radioButton2);
+        radio3 = (RadioButton) findViewById(R.id.radioButton3);
+        radio4 = (RadioButton) findViewById(R.id.radioButton4);
+        createButton = (Button) findViewById(R.id.button3);
     }
 
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        overridePendingTransition(0,0);
+    }
 
     public void buttPress(View view)
     {
-        new Thread(new Runnable() {
-            public void run() {
+        showLoading();
 
-                try {
-                    URL url = new URL("https://challonge.com/api/tournaments.json");
+        ConnectionManager.connectToURL("https://challonge.com/api/tournaments.json");
 
-                    HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
+        String name = nameField.getText().toString();
 
-                    connection.setRequestProperty("Accept-Encoding", "");
-                    connection.setRequestProperty("Authorization", "Basic " + new String(Base64.encode("dfu3:KULR1goMHWqp0UOcIbXljRAet7pLgXDQma0IxKO1".getBytes(), Base64.NO_WRAP)));
+        String urlText = urlField.getText().toString();
 
-                    connection.setRequestMethod("POST");
+        String type = "";
 
-                    OutputStream os = connection.getOutputStream();
+        if (radio.isChecked())
+            type = radio.getText().toString().toLowerCase();
+        if (radio2.isChecked())
+            type = radio2.getText().toString().toLowerCase();
+        if (radio3.isChecked())
+            type = radio3.getText().toString().toLowerCase();
+        if (radio4.isChecked())
+            type = radio4.getText().toString().toLowerCase();
 
-                    OutputStreamWriter writer = new OutputStreamWriter(os);
+        final String messageToWrite = "tournament[name]=" + name + "&tournament[tournament_type]=" + type + "&tournament[url]=" + urlText;
 
-                    EditText nameField = (EditText) findViewById(R.id.editText3);
-                    String name = nameField.getText().toString();
+        new Thread(new Runnable()
+        {
+            public void run()
+            {
+                ConnectionManager.postToServer(messageToWrite);
 
-                    EditText urlField = (EditText) findViewById(R.id.editText4);
-                    String urlText = urlField.getText().toString();
+                final int responseCode = ConnectionManager.getResponseCode();
+                final String responseMessage = ConnectionManager.getResponseMessage();
 
-                    String type = "";
-                    RadioButton radio = (RadioButton) findViewById(R.id.radioButton);
-                    RadioButton radio2 = (RadioButton) findViewById(R.id.radioButton2);
-                    RadioButton radio3 = (RadioButton) findViewById(R.id.radioButton3);
-                    RadioButton radio4 = (RadioButton) findViewById(R.id.radioButton4);
-
-                    if (radio.isChecked())
-                        type = radio.getText().toString().toLowerCase();
-                    if (radio2.isChecked())
-                        type = radio2.getText().toString().toLowerCase();
-                    if (radio3.isChecked())
-                        type = radio3.getText().toString().toLowerCase();
-                    if (radio4.isChecked())
-                        type = radio4.getText().toString().toLowerCase();
-
-                    System.out.println(type);
-
-                    writer.write("tournament[name]=" + name + "&tournament[tournament_type]=" + type + "&tournament[url]=" + urlText);
-
-                    writer.flush();
-                    writer.close();
-                    os.close();
-
-                    if(connection.getResponseCode() == 200)
+                if(responseCode == 200)
+                    goToHome();
+                else
+                {
+                    runOnUiThread(new Runnable()
                     {
-                        CreateTournament.this.runOnUiThread(new Runnable()
-                            {
-                                public void run()
-                                {
-                                    goToHome();
-                                }
-                            });
-
-
-                    }
-                    System.out.println(connection.getResponseCode());
-                    System.out.println(connection.getResponseMessage());
-
-                   // BufferedReader b = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
-                   // String s = "";
-                   // while ((s = b.readLine()) != null)
-                     //   System.out.println(s);
-
-                } catch (Exception e) {
-                    e.printStackTrace();
+                        public void run()
+                        {
+                            hideLoading();
+                            if(responseCode == 422)
+                                Toast.makeText(getApplicationContext(), "Either the URL or name you entered was already taken, or the URL you entered contained an invalid character.", Toast.LENGTH_LONG).show();
+                            else
+                                Toast.makeText(getApplicationContext(), responseCode + ": " + responseMessage, Toast.LENGTH_LONG).show();
+                        }
+                    });
                 }
             }
         }).start();
-
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         // Inflate the menu; this adds items to the action bar if it is present.
         //getMenuInflater().inflate(R.menu.menu_create_tournament, menu);
         return true;
     }
 
+    public void showLoading()
+    {
+        loadingCircle.setVisibility(View.VISIBLE);
+        title.setVisibility(View.INVISIBLE);
+        nameField.setVisibility(View.INVISIBLE);
+        urlField.setVisibility(View.INVISIBLE);
+        radio.setVisibility(View.INVISIBLE);
+        radio2.setVisibility(View.INVISIBLE);
+        radio3.setVisibility(View.INVISIBLE);
+        radio4.setVisibility(View.INVISIBLE);
+        createButton.setVisibility(View.INVISIBLE);
+    }
+
+    public void hideLoading()
+    {
+        loadingCircle.setVisibility(View.INVISIBLE);
+        title.setVisibility(View.VISIBLE);
+        nameField.setVisibility(View.VISIBLE);
+        urlField.setVisibility(View.VISIBLE);
+        radio.setVisibility(View.VISIBLE);
+        radio2.setVisibility(View.VISIBLE);
+        radio3.setVisibility(View.VISIBLE);
+        radio4.setVisibility(View.VISIBLE);
+        createButton.setVisibility(View.VISIBLE);
+    }
+
     public void goToHome()
     {
-        Intent intent = new Intent(this,ChallongeHome.class);
-        startActivity(intent);
         finish();
+        overridePendingTransition(0,0);
+        runOnUiThread(new Runnable()
+        {
+            public void run()
+            {
+                Toast.makeText(getApplicationContext(), "Tournament successfully created!", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_settings)
+        {
             return true;
         }
 
