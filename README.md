@@ -1,8 +1,10 @@
-<b>Challonge Mobile</b>
+Challonge Mobile
+==================
 
 This is a simple mobile app for Android used to manage a user's Challonge account and also view and create tournaments from their phone. The app uses HTTP Basic authentication to make calls to the Challonge API.
 
-<b> Features to be Implemented </b>
+Features to be Implemented
+------------------------------
 
 -Dynamically drawn tournament brackets (will replace the current bracket viewing scheme, which simply opens bracket URLs through a WebView)<br>
 -Support for teams/organizations<br>
@@ -11,7 +13,8 @@ This is a simple mobile app for Android used to manage a user's Challonge accoun
 -Better screen rotation compatibility<br>
 -Lots of bug fixes
 
-<b> Contributors <b>
+Contributors
+------------------------
 
 -Brandon Ruggles<br>
 -Dante Urso<br>
