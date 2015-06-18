@@ -1,9 +1,9 @@
 package com.example.brandon.challongemobile;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,7 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import java.io.FileOutputStream;
 
-public class ChallongeHome extends Activity
+public class ChallongeHome extends ActionBarActivity
 {
     private ProgressBar loadingCircle;
     private Button viewButton;
@@ -22,6 +22,7 @@ public class ChallongeHome extends Activity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        setTitle(ConnectionManager.getUsername().toUpperCase());
         setContentView(R.layout.activity_challonge_home);
         loadingCircle = (ProgressBar)findViewById(R.id.progressBar2);
         loadingCircle.setVisibility(View.INVISIBLE);

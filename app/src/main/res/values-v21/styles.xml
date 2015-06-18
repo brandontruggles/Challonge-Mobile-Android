@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
-    <style name="AppTheme" parent="android:Theme.Material">
+    <style name="AppTheme" parent="Theme.AppCompat">
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:buttonStyle">@style/ButtonStyle</item>
     </style>

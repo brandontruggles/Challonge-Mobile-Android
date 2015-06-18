@@ -1,15 +1,15 @@
 package com.example.brandon.challongemobile;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 
-public class TournamentOptions extends Activity
+public class TournamentOptions extends ActionBarActivity
 {
     private ProgressBar loadingCircle;
     private Button bracketButton;
@@ -18,6 +18,7 @@ public class TournamentOptions extends Activity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        setTitle(ConnectionManager.getUsername().toUpperCase());
         setContentView(R.layout.activity_tournament_options);
         loadingCircle = (ProgressBar) findViewById(R.id.progressBar5);
         bracketButton = (Button) findViewById(R.id.button6);

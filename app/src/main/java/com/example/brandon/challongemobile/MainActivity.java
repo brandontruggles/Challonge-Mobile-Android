@@ -1,23 +1,22 @@
 package com.example.brandon.challongemobile;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.view.View;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends ActionBarActivity {
     private Button viewButton;
     private Button manageButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActionBar().hide();
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
         viewButton = (Button) findViewById(R.id.viewButton);
         manageButton = (Button) findViewById(R.id.manageButton);

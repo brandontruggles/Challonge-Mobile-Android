@@ -1,10 +1,11 @@
 <?xml version="1.0"?>
-<ScrollView
+<ScrollView xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:id="@+id/scrollView"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".Login">
 
     <LinearLayout android:id="@+id/layout"
         android:orientation="vertical"
@@ -91,11 +92,11 @@
             android:onClick="onClick"/>
 
         <ProgressBar
+            android:id="@+id/progressBar"
             style="?android:attr/progressBarStyleLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:id="@+id/progressBar"
             android:indeterminate="false"
             android:layout_gravity="center_horizontal" />
 

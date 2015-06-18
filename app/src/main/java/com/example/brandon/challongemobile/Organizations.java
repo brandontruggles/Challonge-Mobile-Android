@@ -1,7 +1,7 @@
 package com.example.brandon.challongemobile;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import javax.net.ssl.HttpsURLConnection;
 
 
-public class Organizations extends Activity
+public class Organizations extends ActionBarActivity
 {
 
     ListView listView;

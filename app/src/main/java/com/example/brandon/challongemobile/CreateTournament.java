@@ -1,7 +1,7 @@
 package com.example.brandon.challongemobile;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,7 +12,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class CreateTournament extends Activity
+public class CreateTournament extends ActionBarActivity
 {
     private ProgressBar loadingCircle;
     private TextView title;
@@ -28,6 +28,7 @@ public class CreateTournament extends Activity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        setTitle(ConnectionManager.getUsername().toUpperCase());
         setContentView(R.layout.activity_create_tournament);
         loadingCircle = (ProgressBar)findViewById(R.id.progressBar4);
         title = (TextView) findViewById(R.id.textView);
@@ -104,7 +105,7 @@ public class CreateTournament extends Activity
     public boolean onCreateOptionsMenu(Menu menu)
     {
         // Inflate the menu; this adds items to the action bar if it is present.
-        //getMenuInflater().inflate(R.menu.menu_create_tournament, menu);
+        getMenuInflater().inflate(R.menu.menu_create_tournament, menu);
         return true;
     }
 

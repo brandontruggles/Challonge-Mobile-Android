@@ -1,7 +1,7 @@
 package com.example.brandon.challongemobile;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,7 +18,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import javax.net.ssl.HttpsURLConnection;
 
-public class ShowPlayer extends Activity
+public class ShowPlayer extends ActionBarActivity
 {
     private String username;
     private String password;

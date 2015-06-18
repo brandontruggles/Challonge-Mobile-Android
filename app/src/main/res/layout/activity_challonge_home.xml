@@ -13,8 +13,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.example.brandon.challongemobile.ChallongeHome"
-    android:background="#444444">
+    tools:context="com.example.brandon.challongemobile.ChallongeHome">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -25,48 +24,44 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         android:paddingBottom="@dimen/activity_vertical_margin"
         tools:context="com.example.brandon.challongemobile.ChallongeHome"
-        android:background="#444444"
         android:orientation="vertical"
         android:gravity="center_vertical|center_horizontal">
     <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
-        android:layout_height="43dp"
+        android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Your Account"
-        android:id="@+id/textView2"
         android:layout_gravity="center_horizontal"
         android:textColor="#ffffffff" />
 
     <Button
+            android:id="@+id/button4"
             android:layout_width="245dp"
             android:layout_height="154dp"
+            android:layout_marginTop="10dp"
             android:text="My Tournaments"
-            android:background="#373737"
-            android:id="@+id/button4"
             android:layout_gravity="center_horizontal"
-            android:onClick="onMyTourn"
-            android:textColor="#71F288" />
+            android:onClick="onMyTourn" />
 
         <Button
+            android:id="@+id/button5"
             android:layout_width="245dp"
             android:layout_height="154dp"
+            android:layout_marginTop="10dp"
             android:text="Create New Tournament"
-            android:background="#373737"
-            android:id="@+id/button5"
             android:layout_gravity="center_horizontal"
-            android:onClick="onCreateTourn"
-            android:textColor="#71F288"
-            android:layout_marginTop="20dp" />
+            android:onClick="onCreateTourn" />
 
     </LinearLayout>
 
     <ProgressBar
+            android:id="@+id/progressBar2"
             style="?android:attr/progressBarStyleLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/progressBar2"
             android:layout_gravity="center_horizontal"
-        android:layout_centerInParent="true" />
+            android:layout_centerInParent="true" />
 
 </RelativeLayout>
     </ScrollView>

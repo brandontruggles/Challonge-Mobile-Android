@@ -1,14 +1,12 @@
 package com.example.brandon.challongemobile;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
 
-
-public class ButtonListActivity extends Activity
+public class ButtonListActivity extends ActionBarActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)

@@ -1,8 +1,8 @@
 package com.example.brandon.challongemobile;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class TournamentViewActivity extends Activity
+public class TournamentViewActivity extends ActionBarActivity
 {
 
     private ListView listView;
