@@ -1,123 +1,38 @@
 package com.example.brandon.challongemobile;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.Toast;
-import android.widget.CheckBox;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.util.Scanner;
 
 
-public class MainActivity extends ActionBarActivity
-{
-    private Button loginButton;
-    private EditText usernameView;
-    private EditText passwordView;
-    private CheckBox checkB;
-    private ProgressBar progressBar;
+public class MainActivity extends Activity {
+    private Button viewButton;
+    private Button manageButton;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
+        getActionBar().hide();
         setContentView(R.layout.activity_main);
-        loginButton = (Button) findViewById(R.id.loginButton);
-        usernameView = (EditText) findViewById(R.id.usernameTextField);
-        passwordView = (EditText) findViewById(R.id.passwordTextField);
-        checkB = (CheckBox) findViewById(R.id.checkBox);
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        progressBar.setVisibility(View.INVISIBLE);
+        viewButton = (Button) findViewById(R.id.viewButton);
+        manageButton = (Button) findViewById(R.id.manageButton);
         ConnectionManager.init();
-
-        try
-        {
-            File file = new File(getFilesDir(),"userCred.txt");
-            Scanner scan = new Scanner(file);
-            if(file.exists())
-            {
-                ConnectionManager.setUsername(scan.nextLine());
-
-                if(!ConnectionManager.getUsername().equals("login credentials"))
-                {
-                    ConnectionManager.setPassword(scan.nextLine());
-                    new Thread(new Runnable()
-                    {
-                        public void run()
-                        {
-                            loginButton.setVisibility(View.INVISIBLE);
-                            progressBar.setVisibility(View.VISIBLE);
-
-                            ConnectionManager.login();
-
-                            final int responseCode = ConnectionManager.getResponseCode();
-                            final String responseMessage = ConnectionManager.getResponseMessage();
-                            if (responseCode == 200)
-                                handleSuccess();
-                            else
-                            {
-                                runOnUiThread(new Runnable()
-                                {
-                                    public void run()
-                                    {
-                                        Toast.makeText(getApplicationContext(), responseCode + ": " + responseMessage, Toast.LENGTH_LONG).show();
-                                        loginButton.setVisibility(View.VISIBLE);
-                                        progressBar.setVisibility(View.INVISIBLE);
-                                    }
-                                });
-                            }
-                        }
-                    }).start();
-                }
-            }
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
     }
 
-    public void onClick(View v)
+    public void onViewTournament(View view)
     {
-        ConnectionManager.setUsername("bubblerugs");//usernameView.getText().toString();"bubblerugs";"dfu3";
-        ConnectionManager.setPassword("AJmK8DFMF0EpwVRzTlORtuwyJOcGzViDXrQKG63G");//passwordView.getText().toString();"AJmK8DFMF0EpwVRzTlORtuwyJOcGzViDXrQKG63G";"KULR1goMHWqp0UOcIbXljRAet7pLgXDQma0IxKO1";
-        loginButton.setVisibility(View.INVISIBLE);
-        progressBar.setVisibility(View.VISIBLE);
 
-        new Thread(new Runnable()
-        {
-            public void run()
-            {
-                ConnectionManager.login();
+    }
 
-                final int responseCode = ConnectionManager.getResponseCode();
-                final String responseMessage = ConnectionManager.getResponseMessage();
-
-                if(responseCode == 200)
-                    handleSuccess();
-                else
-                {
-                    runOnUiThread(new Runnable()
-                    {
-                        public void run()
-                        {
-                            Toast.makeText(getApplicationContext(), responseCode + ": " + responseMessage, Toast.LENGTH_LONG).show();
-                            loginButton.setVisibility(View.VISIBLE);
-                            progressBar.setVisibility(View.INVISIBLE);
-                        }
-                    });
-                }
-            }
-        }).start();
+    public void onManageTournaments(View view)
+    {
+        Intent intent = new Intent(this,Login.class);
+        startActivity(intent);
     }
 
     @Override
@@ -138,26 +53,4 @@ public class MainActivity extends ActionBarActivity
 
         return super.onOptionsItemSelected(item);
     }
-
-    private void handleSuccess()
-    {
-        if(checkB.isChecked())
-        {
-            try
-            {
-                FileOutputStream fos = openFileOutput("userCred.txt",Context.MODE_PRIVATE);
-                fos.write((ConnectionManager.getUsername()+"\n"+ConnectionManager.getPassword()).getBytes());
-                fos.close();
-            }
-            catch(Exception e)
-            {
-                e.printStackTrace();
-            }
-
-        }
-        Intent intent = new Intent(this,ChallongeHome.class);
-        startActivity(intent);
-        finish();
-    }
-
 }

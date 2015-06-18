@@ -3,16 +3,15 @@
     package="com.example.brandon.challongemobile" >
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.brandon.challongemobile.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="sensor" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,46 +19,51 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.brandon.challongemobile.ChallongeHome"
+            android:name=".ChallongeHome"
             android:label="@string/title_activity_challonge_home"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="sensor" >
         </activity>
         <activity
-            android:name="com.example.brandon.challongemobile.TournamentViewActivity"
+            android:name=".TournamentViewActivity"
             android:label="@string/title_activity_tournament_view"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="sensor" />
         <activity
-            android:name="com.example.brandon.challongemobile.ButtonListActivity"
+            android:name=".ButtonListActivity"
             android:label="@string/title_activity_button_list"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="sensor" >
         </activity>
         <activity
-            android:name="com.example.brandon.challongemobile.CreateTournament"
+            android:name=".CreateTournament"
             android:label="@string/title_activity_create_tournament"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="sensor" >
         </activity>
         <activity
-            android:name="com.example.brandon.challongemobile.SearchTournaments"
+            android:name=".SearchTournaments"
             android:label="@string/title_activity_search_tournaments"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="sensor" >
         </activity>
         <activity
-            android:name="com.example.brandon.challongemobile.Organizations"
+            android:name=".Organizations"
             android:label="@string/title_activity_organizations"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="sensor" >
         </activity>
         <activity
-            android:name="com.example.brandon.challongemobile.ShowPlayer"
+            android:name=".ShowPlayer"
             android:label="@string/title_activity_show_player"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="sensor" >
         </activity>
         <activity
-            android:name="com.example.brandon.challongemobile.TournamentOptions"
+            android:name=".TournamentOptions"
             android:label="@string/title_activity_tournament_options" >
         </activity>
         <activity
-            android:name="com.example.brandon.challongemobile.ShowBracket"
+            android:name=".ShowBracket"
             android:label="@string/title_activity_show_bracket" >
+        </activity>
+        <activity
+            android:name=".Login"
+            android:label="@string/title_activity_login"
+            android:windowSoftInputMode="stateHidden">
         </activity>
     </application>
 

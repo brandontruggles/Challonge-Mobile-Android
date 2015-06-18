@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <style name="AppTheme" parent="android:Theme.Material.Light">
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <style name="AppTheme" parent="android:Theme.Material">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:buttonStyle">@style/ButtonStyle</item>
+    </style>
+    <style name="ButtonStyle" parent="android:Widget.Button">
+        <item name="android:textColor">#71F288</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:background">@drawable/button_drawable</item>
+        <item name="android:textSize">@dimen/button_text_size</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+    <style name="BlendedButtonStyle" parent="ButtonStyle">
+        <item name="android:background">@drawable/blended_button_drawable</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:padding">0dp</item>
     </style>
 </resources>

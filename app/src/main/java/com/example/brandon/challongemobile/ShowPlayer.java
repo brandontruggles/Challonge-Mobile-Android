@@ -1,6 +1,6 @@
 package com.example.brandon.challongemobile;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.Menu;
@@ -18,7 +18,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import javax.net.ssl.HttpsURLConnection;
 
-public class ShowPlayer extends ActionBarActivity
+public class ShowPlayer extends Activity
 {
     private String username;
     private String password;
@@ -120,11 +120,6 @@ public class ShowPlayer extends ActionBarActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }

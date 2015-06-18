@@ -1,13 +1,14 @@
 package com.example.brandon.challongemobile;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
 
 
-public class ButtonListActivity extends ActionBarActivity
+public class ButtonListActivity extends Activity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -37,12 +38,6 @@ public class ButtonListActivity extends ActionBarActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings)
-        {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
