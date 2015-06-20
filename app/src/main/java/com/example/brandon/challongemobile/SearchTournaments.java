@@ -10,11 +10,17 @@ import android.widget.EditText;
 
 public class SearchTournaments extends ActionBarActivity
 {
+    private EditText urlField;
+    private EditText domainField;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_tournaments);
+        setTitle("Search for a Tournament");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        urlField = (EditText)findViewById(R.id.editText2);
+        domainField = (EditText)findViewById(R.id.editText);
     }
 
     @Override
@@ -36,27 +42,11 @@ public class SearchTournaments extends ActionBarActivity
         return super.onOptionsItemSelected(item);
     }
 
-    public void onOrgClick(View view)
-    {
-        EditText editText = (EditText) findViewById(R.id.editText);
-
-        String org =editText.getText().toString();
-
-        System.out.println(org);
-
-        Intent intent = new Intent(this,Organizations.class);
-        intent.putExtra("org",org);
-        startActivity(intent);
-
-
-    }
-
     public void onTagClick(View view)
     {
-        EditText editText = (EditText) findViewById(R.id.editText2);
-
-        String tag =editText.getText().toString();
-        System.out.println(tag);
-
+        Intent intent = new Intent(this, ShowTournament.class);
+        intent.putExtra("URL", urlField.getText().toString());
+        intent.putExtra("Domain", domainField.getText().toString());
+        startActivity(intent);
     }
 }

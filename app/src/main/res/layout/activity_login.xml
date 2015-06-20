@@ -40,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_marginTop="10dp"
             android:textColor="#ff000000"
-            android:maxLength="50"
+            android:maxLength="60"
             android:ems="10"
             android:inputType="textPersonName"
             android:layout_gravity="center_horizontal" />
@@ -48,7 +48,7 @@
         <TextView android:id="@+id/passwordLabel"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="10dp"
             android:textColor="#ffffffff"
             android:text="@string/password_text"
             android:layout_gravity="center_horizontal"

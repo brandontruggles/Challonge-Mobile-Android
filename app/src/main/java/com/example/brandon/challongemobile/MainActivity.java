@@ -25,7 +25,8 @@ public class MainActivity extends ActionBarActivity {
 
     public void onViewTournament(View view)
     {
-
+        Intent intent = new Intent(this,SearchTournaments.class);
+        startActivity(intent);
     }
 
     public void onManageTournaments(View view)

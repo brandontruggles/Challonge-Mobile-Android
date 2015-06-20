@@ -31,8 +31,16 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="View a Bracket"
+            android:text="Search for a Tournament"
             android:id="@+id/viewButton"
+            android:onClick="onViewTournament" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Search for an Organization"
+            android:id="@+id/viewButton2"
             android:onClick="onViewTournament" />
 
         <Button
@@ -40,7 +48,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Manage My Brackets"
+            android:text="Manage My Challonge"
             android:onClick="onManageTournaments" />
 
         <Button

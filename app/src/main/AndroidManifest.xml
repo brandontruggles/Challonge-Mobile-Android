@@ -3,6 +3,7 @@
     package="com.example.brandon.challongemobile" >
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -22,25 +23,34 @@
             android:name=".ChallongeHome"
             android:label="@string/title_activity_challonge_home"
             android:screenOrientation="sensor" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.brandon.challongemobile.MainActivity" />
         </activity>
         <activity
             android:name=".TournamentViewActivity"
             android:label="@string/title_activity_tournament_view"
-            android:screenOrientation="sensor" />
-        <activity
-            android:name=".ButtonListActivity"
-            android:label="@string/title_activity_button_list"
-            android:screenOrientation="sensor" >
+            android:screenOrientation="sensor"
+            android:windowSoftInputMode="stateHidden" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.brandon.challongemobile.ChallongeHome" />
         </activity>
         <activity
             android:name=".CreateTournament"
             android:label="@string/title_activity_create_tournament"
             android:screenOrientation="sensor" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.brandon.challongemobile.ChallongeHome" />
         </activity>
         <activity
             android:name=".SearchTournaments"
             android:label="@string/title_activity_search_tournaments"
             android:screenOrientation="sensor" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.brandon.challongemobile.MainActivity" />
         </activity>
         <activity
             android:name=".Organizations"
@@ -48,22 +58,27 @@
             android:screenOrientation="sensor" >
         </activity>
         <activity
-            android:name=".ShowPlayer"
-            android:label="@string/title_activity_show_player"
-            android:screenOrientation="sensor" >
-        </activity>
-        <activity
-            android:name=".TournamentOptions"
-            android:label="@string/title_activity_tournament_options" >
-        </activity>
-        <activity
             android:name=".ShowBracket"
             android:label="@string/title_activity_show_bracket" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.brandon.challongemobile.TournamentViewActivity" />
         </activity>
         <activity
             android:name=".Login"
             android:label="@string/title_activity_login"
-            android:windowSoftInputMode="stateHidden">
+            android:screenOrientation="sensor"
+            android:windowSoftInputMode="stateHidden" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.brandon.challongemobile.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ShowTournament"
+            android:label="@string/title_activity_show_tournament" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.brandon.challongemobile.SearchTournaments" />
         </activity>
     </application>
 

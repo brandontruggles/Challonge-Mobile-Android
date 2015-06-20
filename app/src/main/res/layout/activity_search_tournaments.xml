@@ -1,3 +1,10 @@
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:id="@+id/scrollView"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -7,44 +14,43 @@
     tools:context="com.example.brandon.challongemobile.SearchTournaments">
 
 
-    <FrameLayout
+    <LinearLayout
+        android:id="@+id/layout2"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:orientation="vertical">
 
         <EditText
-            android:layout_width="233dp"
-            android:layout_height="62dp"
-            android:id="@+id/editText"
-            android:layout_gravity="left|top"
-            android:text=""
-            android:hint="ENTER ORGANIZATION"/>
-
-        <EditText
+            android:id="@+id/editText2"
             android:layout_width="230dp"
             android:layout_height="57dp"
-            android:id="@+id/editText2"
-            android:layout_gravity="left|center_vertical"
-            android:text=""
-            android:hint="ENTER URL TAG"/>
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:maxLength="60"
+            android:inputType="textPersonName"
+            android:hint="URL Tag" />
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="230dp"
+            android:layout_height="57dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:maxLength="60"
+            android:inputType="textPersonName"
+            android:hint="Organization Name" />
 
         <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="113dp"
-            android:layout_height="58dp"
-            android:text="FIND"
-            android:id="@+id/button"
-            android:layout_gravity="right|top"
-            android:onClick="onOrgClick"/>
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="118dp"
-            android:layout_height="60dp"
-            android:text="FIND"
             android:id="@+id/button2"
-            android:layout_gravity="right|center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:text="Search"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
             android:onClick="onTagClick"/>
-    </FrameLayout>
+    </LinearLayout>
 </RelativeLayout>
+</ScrollView>

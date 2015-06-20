@@ -29,6 +29,7 @@ public class Login extends ActionBarActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_login);
         loginButton = (Button) findViewById(R.id.loginButton);
         usernameView = (EditText) findViewById(R.id.usernameTextField);
