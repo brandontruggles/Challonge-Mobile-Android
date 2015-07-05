@@ -29,10 +29,21 @@ public class MainActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
+    public void onViewOrganization(View view)
+    {
+        Intent intent = new Intent(this,SearchOrganizations.class);
+        startActivity(intent);
+    }
+
     public void onManageTournaments(View view)
     {
         Intent intent = new Intent(this,Login.class);
         startActivity(intent);
+    }
+
+    public void onViewAbout(View view)
+    {
+
     }
 
     @Override

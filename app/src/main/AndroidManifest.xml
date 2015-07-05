@@ -80,6 +80,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.brandon.challongemobile.SearchTournaments" />
         </activity>
+        <activity
+            android:name=".SearchOrganizations"
+            android:label="@string/title_activity_search_organizations" >
+        </activity>
     </application>
 
 </manifest>

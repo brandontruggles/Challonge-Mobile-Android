@@ -41,7 +41,7 @@
             android:layout_marginTop="10dp"
             android:text="Search for an Organization"
             android:id="@+id/viewButton2"
-            android:onClick="onViewTournament" />
+            android:onClick="onViewOrganization" />
 
         <Button
             android:id="@+id/manageButton"
