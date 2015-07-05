@@ -1,23 +1,53 @@
 package com.example.brandon.challongemobile;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebChromeClient;
+import android.webkit.WebViewClient;
+import android.widget.TextView;
+import java.io.FileOutputStream;
 
 public class ShowBracket extends ActionBarActivity
 {
+    private WebView webview;
+    private TextView title;
+    private ProgressDialog dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_bracket);
-
-        WebView webview = new WebView(this);
-        setContentView(webview);
-
-        webview.loadUrl("http://challonge.com/"+getIntent().getExtras().getString("Data"));
+        dialog = ProgressDialog.show(this,"","Loading...",true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setTitle(ConnectionManager.getUsername().toUpperCase());
+        title = (TextView)findViewById(R.id.textView4);
+        title.setText((String)getIntent().getExtras().get("Name"));
+        webview = (WebView)findViewById(R.id.webView);
+        webview.setBackgroundColor(373737);
+        webview.setWebChromeClient(new WebChromeClient());
+        WebSettings settings = webview.getSettings();
+        settings.setJavaScriptEnabled(true);
+        settings.setUseWideViewPort(true);
+        settings.setBuiltInZoomControls(true);
+        settings.setDisplayZoomControls(false);
+        webview.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                dialog.hide();
+            }
+        });
+        webview.loadUrl("http://challonge.com/" + getIntent().getExtras().get("URL") + "/module?show_final_results=1&show_standings=1");
     }
 
     @Override
@@ -42,13 +72,51 @@ public class ShowBracket extends ActionBarActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings)
+        if (id == R.id.action_logout)
         {
-            return true;
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Do you want to log out of your Challonge account?");
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int id) {
+                    logout();
+                }
+            });
+
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+        if(id == R.id.action_refresh)
+        {
+            webview.reload();
+            dialog.show();
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void logout()
+    {
+        try
+        {
+            FileOutputStream fos = openFileOutput("userCred.txt", Context.MODE_PRIVATE);
+            fos.write(("login credentials").getBytes());
+            fos.close();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

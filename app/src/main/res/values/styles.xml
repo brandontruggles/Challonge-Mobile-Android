@@ -1,6 +1,26 @@
-<resources>
-
-<!-- Base application theme. -->
-<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-</style>
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+<!-- Base application theme.-->
+    <style name="AppTheme" parent="Theme.AppCompat">
+        <item name="android:background">#444444</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:buttonStyle">@style/ButtonStyle</item>
+        <item name="android:actionBarStyle">@style/ActionBarStyle</item>
+    </style>
+    <style name="ButtonStyle" parent="android:Widget.Button">
+        <item name="android:textColor">#71F288</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:background">@drawable/button_drawable</item>
+        <item name="android:textSize">@dimen/button_text_size</item>
+        <item name="android:padding">10dp</item>
+    </style>
+    <style name="BlendedButtonStyle" parent="ButtonStyle">
+        <item name="android:background">@drawable/blended_button_drawable</item>
+        <item name="android:padding">0dp</item>
+    </style>
+    <style name="ActionBarStyle">
+        <item name="android:background">#000000</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
 </resources>

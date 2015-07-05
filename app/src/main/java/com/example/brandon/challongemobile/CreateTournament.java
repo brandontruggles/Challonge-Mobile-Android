@@ -1,7 +1,11 @@
 package com.example.brandon.challongemobile;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,6 +15,8 @@ import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.FileOutputStream;
 
 public class CreateTournament extends ActionBarActivity
 {
@@ -28,7 +34,9 @@ public class CreateTournament extends ActionBarActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        setTitle(ConnectionManager.getUsername().toUpperCase());
         setContentView(R.layout.activity_create_tournament);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         loadingCircle = (ProgressBar)findViewById(R.id.progressBar4);
         title = (TextView) findViewById(R.id.textView);
         loadingCircle.setVisibility(View.INVISIBLE);
@@ -104,7 +112,7 @@ public class CreateTournament extends ActionBarActivity
     public boolean onCreateOptionsMenu(Menu menu)
     {
         // Inflate the menu; this adds items to the action bar if it is present.
-        //getMenuInflater().inflate(R.menu.menu_create_tournament, menu);
+        getMenuInflater().inflate(R.menu.menu_create_tournament, menu);
         return true;
     }
 
@@ -155,13 +163,45 @@ public class CreateTournament extends ActionBarActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        if (id == R.id.action_logout) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Do you want to log out of your Challonge account?");
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int id) {
+                    logout();
+                }
+            });
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings)
-        {
-            return true;
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void logout()
+    {
+        try
+        {
+            FileOutputStream fos = openFileOutput("userCred.txt", Context.MODE_PRIVATE);
+            fos.write(("login credentials").getBytes());
+            fos.close();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

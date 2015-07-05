@@ -11,4 +11,6 @@
 
     <dimen name="welcome_text_size">32sp</dimen>
 
+    <dimen name="button_text_size">16dp</dimen>
+
 </resources>

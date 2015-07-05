@@ -17,7 +17,6 @@
     <string name="tourney_type_double_elimination">Double Elimination</string>
     <string name="tourney_type_round_robin">Round Robin</string>
     <string name="tourney_type_swiss">Swiss</string>
-    <string name="action_settings">Logout</string>
     <string name="title_activity_button_list">ButtonListActivity</string>
     <string name="title_activity_tournament_view">View My Tournaments</string>
     <string name="title_activity_create_tournament">Create New Tournament</string>
@@ -26,5 +25,11 @@
     <string name="title_activity_show_player">Show Players</string>
     <string name="title_activity_tournament_options">TournamentOptions</string>
     <string name="title_activity_show_bracket">ShowBracket</string>
+    <string name="action_logout">Logout</string>
+    <string name="title_activity_login">Login</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_show_tournament">ShowTournament</string>
+    <string name="title_activity_search_organizations">SearchOrganizations</string>
+    <string name="title_activity_show_organization">ShowOrganization</string>
 
 </resources>
